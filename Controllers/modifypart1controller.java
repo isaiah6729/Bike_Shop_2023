@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -29,37 +28,42 @@ public class modifypart1controller implements Initializable {
 
     /** part object */
     private static Part parttoModify = null;
+    
     /** label to change */
     public Label machinecompanyName;
+    
     /** assign parts machine id / company name*/
     @FXML public TextField machinecompanyNameinput;
+    
     /** assign parts id*/
     @FXML public TextField modifypartid;
+    
     /** assign parts min*/
     @FXML public TextField partmin;
+    
     /** assign parts max*/
     @FXML public TextField partMax;
+    
     /** assign parts price*/
     @FXML public TextField partPrice;
+    
     /** assign parts stock */
     @FXML public TextField partInventory;
+    
     /** assign parts name */
     @FXML public TextField partName;
+    
     /** assign company name */
     @FXML public RadioButton outsourceclick;
+    
     /** assign machine id */
     @FXML public RadioButton inHouseclick;
+    
     /** cancel parts */
     @FXML public Button cancelPart;
+    
     /** save parts */
     @FXML public Button partsave;
-
-    /**
-     *  initializes table
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }
 
     /**
      * @param part recieves input from main screen product object
@@ -105,19 +109,23 @@ public class modifypart1controller implements Initializable {
             if (name.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Name cannot be empty");
                 Optional<ButtonType> add = alert.showAndWait();
-            } else {
+            } 
+            else {
 
                 /** max can't be less than min */
                 if (max < min) {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Max cannot be less than min");
                     Optional<ButtonType> maxmin = alert.showAndWait();
-                } else {
+                } 
+                else {
 
                     /** stock has to be between max and min */
                     if (!(stock <= max && stock >= min)) {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory amount invalid. Must be between min and max");
                         Optional<ButtonType> maxmin = alert.showAndWait();
-                    } else {
+                    } 
+                    else {
+                        
                         if (inHouseclick.isSelected()) {
                             Integer machineID = Integer.parseInt(machinecompanyNameinput.getText());
                             Inventory.updatePart(intIndex, new InHouse(id, name, price, stock, min, max, machineID));
@@ -132,6 +140,7 @@ public class modifypart1controller implements Initializable {
                         }
 
                         if (outsourceclick.isSelected()) {
+                            
                             String companyName = machinecompanyNameinput.getText();
                             Inventory.updatePart(intIndex, new Outsourced(id, name, price, stock, min, max, companyName));
 
@@ -146,7 +155,9 @@ public class modifypart1controller implements Initializable {
                     }
                 }
             }
-        } catch (NumberFormatException exception) {
+        } 
+        catch (NumberFormatException exception) {
+            
             Alert alert = new Alert(Alert.AlertType.WARNING, "No slots can be empty\n" +
                     "Name must be a letter (no numbers)\n" +
                     "Company Name must be a letter (no numbers)\n" +

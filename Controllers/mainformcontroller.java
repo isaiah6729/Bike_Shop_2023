@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -31,45 +30,63 @@ public class mainformcontroller implements Initializable {
     Stage stage;
     Parent scene;
 
-
     /** products list */
     ObservableList<Product> products = null;
+    
     /** parts table*/
     @FXML public TableView partTable;
+    
     /** assign parts id */
     @FXML public TableColumn partID;
+    
     /** assign parts name */
     @FXML public TableColumn partName;
+    
     /** assign parts stock */
     @FXML public TableColumn partInventory;
+    
     /** assign parts price */
     @FXML public TableColumn partPrice;
+    
     /** looks up parts */
     @FXML public TextField partSearch;
+    
     /** adds parts */
     @FXML public Button addPart;
+    
     /** modify parts */
     @FXML public Button modifyPart;
+    
     /** deletes parts */
     @FXML public Button deletePart;
+    
     /** products search */
     @FXML public TextField productSearch;
+    
     /** products table*/
     @FXML public TableView productTable;
+    
     /** assign products id*/
     @FXML public TableColumn productID;
+    
     /** assign products name*/
     @FXML public TableColumn productName;
+    
     /** assign products stock */
     @FXML public TableColumn productInventory;
+    
     /** assign products price */
     @FXML public TableColumn productPrice;
+    
     /** add products */
     @FXML public Button addProduct;
+    
     /** modify products */
     @FXML public Button modifyProduct;
+    
     /** deletes products */
     @FXML public Button deleteProduct;
+    
     /** exit screen */
     @FXML public Button inventoryExit;
 
@@ -78,9 +95,9 @@ public class mainformcontroller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         partTable.setItems(Inventory.getAllParts());
         productTable.setItems(Inventory.getAllProducts());
-
         partID.setCellValueFactory(new PropertyValueFactory<>("id"));
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInventory.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -96,6 +113,7 @@ public class mainformcontroller implements Initializable {
      */
     @FXML
     public void onactionpartsearch(ActionEvent actionEvent) {
+        
         String input = partSearch.getText();
 
         /**  if there is no selection, all parts show */
@@ -106,28 +124,32 @@ public class mainformcontroller implements Initializable {
         try {
             ObservableList<Part> parts = Inventory.lookupPart(input);
             partTable.setItems(parts);
+            
             /**
              * resolved issue:
              * tried parts == null and got no response - must be parts.size() == 0
              * */
             if (parts.size() == 0) {
 
-
                 int input2 = Integer.parseInt(input);
 
                 /** look by number */
                 Part part = Inventory.lookupPart(input2);
+                
                 if (part != null) {
                     parts.add(part);
                     partTable.setItems(parts);
-                } else {
+                } 
+                else {
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Part not found");
                     Optional<ButtonType> search2 = alert2.showAndWait();
                     partTable.setItems(Inventory.getAllParts());
                 }
             }
 
-        } catch (NumberFormatException exception) {
+        } 
+        catch (NumberFormatException exception) {
+            
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Part not found");
             Optional<ButtonType> search2 = alert2.showAndWait();
             partTable.setItems(Inventory.getAllParts());
@@ -161,7 +183,8 @@ public class mainformcontroller implements Initializable {
         if (input == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "You have to select an item");
             Optional<ButtonType> deletebutton = alert.showAndWait();
-        } else {
+        } 
+        else {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("modifypart1.fxml"));
@@ -190,7 +213,8 @@ public class mainformcontroller implements Initializable {
         if (partselectitem == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "You have to select an item");
             Optional<ButtonType> deletebutton = alert.showAndWait();
-        } else {
+        } 
+        else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will delete this " + "section. Are you sure you want to do this?");
             Optional<ButtonType> deletebutton = alert.showAndWait();
 
@@ -198,7 +222,8 @@ public class mainformcontroller implements Initializable {
                 Alert alert2 = new Alert(Alert.AlertType.WARNING, "Selection deleted");
                 Optional<ButtonType> deletebutton2 = alert2.showAndWait();
                 Inventory.deletePart(partselectitem);
-            } else {
+            } 
+            else {
                 Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION, "Delete selection was aborted");
                 Optional<ButtonType> deletebutton3 = alert3.showAndWait();
             }
@@ -220,23 +245,28 @@ public class mainformcontroller implements Initializable {
         try {
             /** looks for input  */
             products = Inventory.lookupProduct(input);
+            
             productTable.setItems(products);
 
             if (products.size() == 0) {
 
                 int input2 = Integer.parseInt(input);
+                
                 Product product = Inventory.lookupProduct(input2);
+                
                 if (product != null) {
                     products.add(product);
                     productTable.setItems(products);
-                } else {
+                } 
+                else {
                     /** no ID or letter found */
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Product not found");
                     Optional<ButtonType> search = alert.showAndWait();
                     productTable.setItems(Inventory.getAllProducts());
                 }
             }
-        } catch (NumberFormatException exception) {
+        } 
+        catch (NumberFormatException exception) {
             /** no ID or letter found */
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Product not found");
             Optional<ButtonType> search = alert.showAndWait();
@@ -300,7 +330,8 @@ public class mainformcontroller implements Initializable {
         if (productselecteditem == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "You have to select an item");
             Optional<ButtonType> deletebutton = alert.showAndWait();
-        } else {
+        } 
+        else {
 
             /** checks to see if associated parts list is empty */
             if (productselecteditem.getAllAssociatedParts().isEmpty()) {
@@ -313,11 +344,13 @@ public class mainformcontroller implements Initializable {
                     Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Selection deleted");
                     Optional<ButtonType> productbutton2 = alert2.showAndWait();
                     Inventory.deleteProduct(productselecteditem);
-                } else {
+                } 
+                else {
                     Alert alert3 = new Alert(Alert.AlertType.ERROR, "Deleting selection was aborted");
                     Optional<ButtonType> deletebutton3 = alert3.showAndWait();
                 }
-            } else {
+            } 
+            else {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Parts assigned to product. Cannot delete.");
                 Optional<ButtonType> deletebutton = alert.showAndWait();
             }

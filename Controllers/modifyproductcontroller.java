@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -33,51 +32,73 @@ public class modifyproductcontroller implements Initializable {
 
     /** parts list */
     ObservableList<Part> parts2 = FXCollections.observableArrayList();
+ 
     /** initialize table */
     Product productTable = new Product(0, null, 0, 0, 0, 0);
+ 
     /** object to transfer */
     private static Product producttomodify = new Product(0, null, 0, 0, 0, 0);
 
     /** modify parts table*/
     @FXML public TableView modifyparttable;
+ 
     /** modify products table */
     @FXML public TableView modifyproducttable;
+ 
     /** search products */
     @FXML public TextField modifyproductsearch;
+ 
     /** assign parts name*/
     @FXML public TableColumn modifyid;
+ 
     /** assign parts name*/
     @FXML public TableColumn modifyname;
+ 
     /** assign parts stock*/
     @FXML public TableColumn modifystock;
+ 
     /** assign parts price*/
     @FXML public TableColumn modifyprice;
+ 
     /** assign parts id*/
     @FXML public TableColumn modifypart2id;
+ 
     /** assign parts name*/
     @FXML public TableColumn modifypart2name;
+ 
     /** assign parts stock*/
     @FXML public TableColumn modifypart2stock;
+ 
     /** assign parts price*/
     @FXML public TableColumn modifypart2price;
+ 
     /** assign products id */
     @FXML public TextField modifyproductid;
+ 
     /** assign products name */
     @FXML public TextField modifyproductName;
+ 
     /** assign products stock */
     @FXML public TextField modifyInventory;
+ 
     /** assign products price*/
     @FXML public TextField modifyproductPrice;
+ 
     /** assign products max */
     @FXML public TextField modifyproductmax;
+ 
     /** assign products min */
     @FXML public TextField modifyproductmin;
+ 
     /** modify products */
     @FXML public Button modifyproduct;
+ 
     /** remove associated parts*/
     @FXML public Button modifyproductremoveassociatedpart;
+ 
     /** save products */
     @FXML public Button modifyproductsave;
+ 
     /** cancel products */
     @FXML public Button modifyproductcancel;
 
@@ -88,7 +109,6 @@ public class modifyproductcontroller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         modifyparttable.setItems(Inventory.getAllParts());
-
 
         modifyid.setCellValueFactory(new PropertyValueFactory<>("id"));
         modifyname.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -117,22 +137,25 @@ public class modifyproductcontroller implements Initializable {
         modifyparttable.setItems(parts1);
 
         if (parts1.size() == 0) {
+         
             try {
                 int input2 = Integer.parseInt(input);
                 Part parts2 = Inventory.lookupPart(input2);
                 if (parts2 != null) {
                     parts1.add(parts2);
                     modifyparttable.setItems(parts1);
-                } else {
+                } 
+                else {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Part not found");
                     Optional<ButtonType> add = alert.showAndWait();
                     modifyparttable.setItems(Inventory.getAllParts());
                 }
-            } catch (NumberFormatException exception) {
+            } 
+            catch (NumberFormatException exception) {
+             
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Part not found");
                 Optional<ButtonType> add = alert.showAndWait();
                 modifyparttable.setItems(Inventory.getAllParts());
-
             }
         }
     }
@@ -169,7 +192,8 @@ public class modifyproductcontroller implements Initializable {
         if (selectedpart == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an item");
             Optional<ButtonType> delete = alert.showAndWait();
-        } else {
+        } 
+        else {
 
             Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this?");
             Optional<ButtonType> delete1 = alert1.showAndWait();
@@ -178,7 +202,8 @@ public class modifyproductcontroller implements Initializable {
                 Alert alert2 = new Alert(Alert.AlertType.WARNING, "Selection deleted");
                 Optional<ButtonType> delete2 = alert2.showAndWait();
                 producttomodify.deleteAssociatedPart(selectedpart);
-            } else {
+            } 
+            else {
                 Alert alert3 = new Alert(Alert.AlertType.ERROR, "Deleting selection was aborted");
                 Optional<ButtonType> deletebutton3 = alert3.showAndWait();
             }
@@ -199,7 +224,6 @@ public class modifyproductcontroller implements Initializable {
     public void onactionmodifyproductsave(ActionEvent actionEvent) throws IOException {
 
         try {
-
             int intIndex = Inventory.getAllProducts().indexOf(producttomodify);
 
             Integer id = Integer.parseInt(modifyproductid.getText());
@@ -212,17 +236,20 @@ public class modifyproductcontroller implements Initializable {
             if (name.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Name cannot be left blank");
                 Optional<ButtonType> add = alert.showAndWait();
-            } else {
+            } 
+            else {
 
                 if (max < min) {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Max cannot be less than min");
                     Optional<ButtonType> maxmin = alert.showAndWait();
-                } else {
+                } 
+                else {
 
                     if (!(stock <= max && stock >= min)) {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory amount invalid. Must be between min and max");
                         Optional<ButtonType> maxmin = alert.showAndWait();
-                    } else {
+                    } 
+                    else {
 
                         /** update product */
 
@@ -244,8 +271,10 @@ public class modifyproductcontroller implements Initializable {
                 }
             }
         }
+         
         /** catches empty slots */
         catch (NumberFormatException exception) {
+         
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "No slots can be empty\n" +
                     "Name must be a letter (no numbers)\n" +
                     "Company Name must be a letter (no numbers)\n" +

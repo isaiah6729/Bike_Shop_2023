@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="796.0" prefWidth="1000.0" style="-fx-background-color: rgb(200,50,100);"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.wgujavaproject.modifyproductcontroller">
+    <children>
+        <Pane layoutX="22.0" layoutY="25.0" prefHeight="739.0" prefWidth="896.0"
+              style="-fx-background-color: blue; -fx-border-color: green; -fx-border-width: 10px;">
+            <children>
+                <TableView fx:id="modifyparttable" layoutX="500.0" layoutY="80.0" prefHeight="200.0" prefWidth="360.0"
+                           style="-fx-background-color: red;">
+                    <columns>
+                        <TableColumn fx:id="modifyid" prefWidth="75.0" text="Part ID"/>
+                        <TableColumn fx:id="modifyname" prefWidth="75.0" text="Part Name"/>
+                        <TableColumn fx:id="modifystock" prefWidth="106.0" text="Inventory Level"/>
+                        <TableColumn fx:id="modifyprice" prefWidth="102.0" text="Price Per Unit"/>
+                    </columns>
+                </TableView>
+                <TextField fx:id="modifyproductsearch" layoutX="659.0" layoutY="26.0"
+                           onAction="#onactionaddproductsearch" promptText="Search by Part ID or Name"/>
+                <TableView fx:id="modifyproducttable" layoutX="493.0" layoutY="367.0" prefHeight="200.0"
+                           prefWidth="360.0" style="-fx-background-color: red;">
+                    <columns>
+                        <TableColumn fx:id="modifypart2id" prefWidth="75.0" text="Part ID"/>
+                        <TableColumn fx:id="modifypart2name" prefWidth="90.0" text="Part Name"/>
+                        <TableColumn fx:id="modifypart2stock" prefWidth="106.0" text="Inventory Level"/>
+                        <TableColumn fx:id="modifypart2price" prefWidth="87.0" text="Price Per Unit"/>
+                    </columns>
+                </TableView>
+                <Button fx:id="modifyproduct" layoutX="776.0" layoutY="311.0" mnemonicParsing="false"
+                        onAction="#onactionaddproduct" style="-fx-background-color: lightgreen;" text="Add"/>
+                <Label layoutX="47.0" layoutY="65.0" style="-fx-font-weight: BOLD; -fx-font-size: 20px;"
+                       text="Modify Product" textFill="#fcf7f7"/>
+                <VBox alignment="CENTER" layoutX="33.0" layoutY="222.0" prefHeight="200.0" prefWidth="100.0"
+                      spacing="25.0">
+                    <children>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="ID" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="NAME" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="INVENTORY" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="PRICE" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="MAX" textFill="#f8f7f7"/>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="144.0" layoutY="222.0" prefHeight="200.0" prefWidth="100.0"
+                      spacing="20.0">
+                    <children>
+                        <TextField fx:id="modifyproductid" editable="false" text="Auto Gen - Disabled"/>
+                        <TextField fx:id="modifyproductName"/>
+                        <TextField fx:id="modifyInventory"/>
+                        <TextField fx:id="modifyproductPrice"/>
+                        <TextField fx:id="modifyproductmax"/>
+                    </children>
+                </VBox>
+                <HBox layoutX="256.0" layoutY="402.0" prefHeight="30.0" prefWidth="227.0" spacing="30.0">
+                    <children>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="MIN" textFill="#f8f7f7"/>
+                        <TextField fx:id="modifyproductmin"/>
+                    </children>
+                </HBox>
+                <Button fx:id="modifyproductremoveassociatedpart" layoutX="629.0" layoutY="605.0"
+                        mnemonicParsing="false" onAction="#onactionmodifyproductremoveassociatedpart"
+                        style="-fx-background-color: lightgreen;" text="REMOVE ASSOCIATED PART"/>
+                <Button fx:id="modifyproductsave" layoutX="629.0" layoutY="650.0" mnemonicParsing="false"
+                        onAction="#onactionmodifyproductsave" style="-fx-background-color: lightgreen;" text="SAVE"/>
+                <Button fx:id="modifyproductcancel" layoutX="746.0" layoutY="650.0" mnemonicParsing="false"
+                        onAction="#onactionmodifyproductcancel" style="-fx-background-color: lightgreen;"
+                        text="CANCEL"/>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

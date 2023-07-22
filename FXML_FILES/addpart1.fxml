@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="766.0" prefWidth="1001.0" style="-fx-background-color: rgb(200,50,100);"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.wgujavaproject.addpart1controller">
+    <children>
+        <Pane layoutX="53.0" layoutY="61.0" prefHeight="604.0" prefWidth="896.0"
+              style="-fx-background-color: blue; -fx-border-color: green; -fx-border-width: 10px;">
+            <children>
+                <Label layoutX="47.0" layoutY="65.0" style="-fx-font-weight: BOLD; -fx-font-size: 20px;" text="Add Part"
+                       textFill="#fcf7f7"/>
+                <Button fx:id="partsave" layoutX="632.0" layoutY="488.0" mnemonicParsing="false"
+                        onAction="#onactionpartsave" style="-fx-background-color: lightgreen;" text="Save"/>
+                <Button fx:id="Partcancel" layoutX="704.0" layoutY="488.0" mnemonicParsing="false"
+                        onAction="#onActioncancelPart" style="-fx-background-color: lightgreen;" text="Cancel"/>
+                <RadioButton fx:id="inHouseclick" layoutX="448.0" layoutY="110.0" mnemonicParsing="false"
+                             onAction="#onactioninhouse" selected="true"
+                             style="-fx-font-weight: BOLD; -fx-font-size: 15PX;" text="IN-HOUSE" textFill="#f5f4f4">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="addtoggle"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="outsourceclick" layoutX="654.0" layoutY="110.0" mnemonicParsing="false"
+                             onAction="#onactionoutsourced" style="-fx-font-weight: BOLD; -fx-font-size: 15PX;"
+                             text="OUTSOURCED" textFill="#f5f4f4" toggleGroup="$addtoggle"/>
+                <VBox alignment="CENTER" layoutX="259.0" layoutY="211.0" prefHeight="200.0" prefWidth="149.0"
+                      spacing="20.0">
+                    <children>
+                        <TextField fx:id="partID" editable="false" text="AUTO GEN-DISABLED"/>
+                        <TextField fx:id="partName"/>
+                        <TextField fx:id="partInventory"/>
+                        <TextField fx:id="partPrice"/>
+                        <TextField fx:id="partMax"/>
+                        <TextField fx:id="machinecompanyNameinput" prefHeight="94.0" prefWidth="149.0"/>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" layoutX="130.0" layoutY="211.0" prefHeight="200.0" prefWidth="100.0"
+                      spacing="25.0">
+                    <children>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="ID" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="NAME" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="INVENTORY" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="PRICE" textFill="#f8f7f7"/>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="MAX" textFill="#f8f7f7"/>
+                        <Label fx:id="machinecompanyName" style="-fx-font-size: 15px; -fx-font-weight: bold;"
+                               text="MACHINE ID" textFill="#f8f7f7"/>
+                    </children>
+                </VBox>
+                <HBox layoutX="454.0" layoutY="394.0" prefHeight="47.0" prefWidth="242.0" spacing="30.0">
+                    <children>
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="MIN" textFill="#f8f7f7"/>
+                        <TextField fx:id="partmin"/>
+                    </children>
+                </HBox>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

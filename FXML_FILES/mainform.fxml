@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" style="-fx-background-color: rgb(200,50,100);"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.wgujavaproject.mainformcontroller">
+    <children>
+        <Pane layoutX="22.0" layoutY="137.0" prefHeight="334.0" prefWidth="447.0"
+              style="-fx-background-color: blue; -fx-border-color: green; -fx-border-width: 10px;">
+            <children>
+                <TableView fx:id="partTable" layoutX="51.0" layoutY="74.0" prefHeight="200.0" prefWidth="360.0"
+                           style="-fx-background-color: red;">
+                    <columns>
+                        <TableColumn fx:id="partID" prefWidth="75.0" text="Part ID"/>
+                        <TableColumn fx:id="partName" prefWidth="75.0" text="Part Name"/>
+                        <TableColumn fx:id="partInventory" prefWidth="106.0" text="Inventory Level"/>
+                        <TableColumn fx:id="partPrice" prefWidth="102.0" text="Price Per Unit"/>
+                        <TableColumn prefWidth="75.0" text="Column X"/>
+                    </columns>
+                </TableView>
+                <TextField fx:id="partSearch" layoutX="250.0" layoutY="26.0" onAction="#onactionpartsearch"
+                           promptText="Search"/>
+                <Button fx:id="addPart" layoutX="132.0" layoutY="289.0" mnemonicParsing="false"
+                        onAction="#onActionaddPart" style="-fx-background-color: lightgreen;" text="Add"/>
+                <Button fx:id="modifyPart" layoutX="204.0" layoutY="289.0" mnemonicParsing="false"
+                        onAction="#onActionmodifyPart" style="-fx-background-color: lightgreen;" text="Modify"/>
+                <Button fx:id="deletePart" layoutX="274.0" layoutY="289.0" mnemonicParsing="false"
+                        onAction="#onActiondeletePart" style="-fx-background-color: lightgreen;" text="Delete"/>
+                <Label layoutX="38.0" layoutY="28.0" style="-fx-font-size: 15px; -fx-font-weight: bold;" text="Parts"
+                       textFill="#f8f7f7"/>
+            </children>
+        </Pane>
+        <Pane layoutX="482.0" layoutY="137.0" prefHeight="334.0" prefWidth="422.0"
+              style="-fx-background-color: blue; -fx-border-color: green; -fx-border-width: 10px;">
+            <children>
+                <Label layoutX="45.0" layoutY="31.0" style="-fx-font-size: 15px; -fx-font-weight: bold;" text="Product"
+                       textFill="#f8f7f7"/>
+                <TextField fx:id="productSearch" layoutX="211.0" layoutY="31.0" onAction="#onactionproductsearch"
+                           promptText="Search"/>
+                <TableView fx:id="productTable" layoutX="31.0" layoutY="82.0" prefHeight="200.0" prefWidth="360.0"
+                           style="-fx-background-color: red;">
+                    <columns>
+                        <TableColumn fx:id="productID" prefWidth="75.0" text="Product ID"/>
+                        <TableColumn fx:id="productName" prefWidth="90.0" text="Product Name"/>
+                        <TableColumn fx:id="productInventory" prefWidth="106.0" text="Inventory Level"/>
+                        <TableColumn fx:id="productPrice" prefWidth="87.0" text="Price Per Unit"/>
+                    </columns>
+                </TableView>
+                <Button fx:id="addProduct" layoutX="178.0" layoutY="297.0" mnemonicParsing="false"
+                        onAction="#onactionaddProduct" style="-fx-background-color: lightgreen;" text="Add"/>
+                <Button fx:id="modifyProduct" layoutX="250.0" layoutY="297.0" mnemonicParsing="false"
+                        onAction="#onModifyProduct" style="-fx-background-color: lightgreen;" text="Modify"/>
+                <Button fx:id="deleteProduct" layoutX="320.0" layoutY="297.0" mnemonicParsing="false"
+                        onAction="#onDeleteProduct" style="-fx-background-color: lightgreen;" text="Delete"/>
+            </children>
+        </Pane>
+        <Button fx:id="inventoryExit" layoutX="741.0" layoutY="509.0" mnemonicParsing="false" onAction="#onExit"
+                prefHeight="25.0" prefWidth="130.0" text="Exit"/>
+        <Label layoutX="61.0" layoutY="56.0" style="-fx-font-weight: BOLD; -fx-font-size: 20px;"
+               text="Inventory Management System" textFill="#fcf7f7"/>
+    </children>
+</AnchorPane>

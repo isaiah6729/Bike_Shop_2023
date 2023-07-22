@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -32,46 +31,67 @@ public class addproductcontroller implements Initializable {
 
     /** products list */
     ObservableList<Part> parts2 = FXCollections.observableArrayList();
+    
     /** assign products id*/
     @FXML public TextField productID;
+    
     /** search parts */
     @FXML public TextField addproductsearch;
+    
     /** add products */
     @FXML public Button addproduct;
+    
     /** assign products name*/
     @FXML public TextField partName;
+    
     /** assign products stock */
     @FXML public TextField partInventory;
+    
     /** assign products price*/
     @FXML public TextField productPrice;
+    
     /** assign products max*/
     @FXML public TextField productmax;
+    
     /** assign products min*/
     @FXML public TextField addproductmin;
+    
     /** remove associated parts */
     @FXML public Button addproductremoveassociatedpart;
+    
     /** save products */
     @FXML public Button addproductsave;
+    
     /** cancel products */
     @FXML public Button addproductcancel;
+    
     /** parts table */
     @FXML public TableView addparttable;
+    
     /** assign parts id*/
     @FXML public TableColumn partid;
+    
     /** assign parts name*/
     @FXML public TableColumn partname;
+    
     /** assign parts stock */
     @FXML public TableColumn partstock;
+    
     /** assign parts price*/
     @FXML public TableColumn partprice;
+    
     /**  parts table 2 */
     @FXML public TableView addparttable2;
+    
     /** assign parts id*/
     @FXML public TableColumn productid;
+    
     /** assign parts name */
     @FXML public TableColumn productname;
+    
     /** assign parts stock */
     @FXML public TableColumn productstock;
+    
     /** assign parts price */
     @FXML public TableColumn productprice;
 
@@ -81,7 +101,6 @@ public class addproductcontroller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         addparttable.setItems(Inventory.getAllParts());
-
 
         partid.setCellValueFactory(new PropertyValueFactory<>("id"));
         partname.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -197,7 +216,8 @@ public class addproductcontroller implements Initializable {
             if (name.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Name cannot be left blank");
                 Optional<ButtonType> add = alert.showAndWait();
-            } else {
+            } 
+            else {
 
                 Integer stock = Integer.parseInt(partInventory.getText());
                 Double price = Double.parseDouble(productPrice.getText());
@@ -207,12 +227,14 @@ public class addproductcontroller implements Initializable {
                 if (max < min) {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Max cannot be less than min");
                     Optional<ButtonType> maxmin = alert.showAndWait();
-                } else {
+                } 
+                else {
 
                     if (!(stock <= max && stock >= min)) {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory amount invalid. Must be between min and max");
                         Optional<ButtonType> maxmin = alert.showAndWait();
-                    } else {
+                    } 
+                    else {
 
                         Product newProduct = new Product(Inventory.getNewProductID(), name, price, stock, min, max);
                         Inventory.addProduct(newProduct);
@@ -220,8 +242,7 @@ public class addproductcontroller implements Initializable {
                         for (Part part : parts2) {
                             newProduct.addAssociatedPart(part);
                         }
-                        // System.out.println(newProduct.getAllAssociatedParts().size());
-
+                       
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Product added successfully");
                         Optional<ButtonType> add = alert.showAndWait();
 
@@ -234,7 +255,8 @@ public class addproductcontroller implements Initializable {
                 }
             }
         }
-        /** catches empty slots */ catch (NumberFormatException exception) {
+        /** catches empty slots */ 
+        catch (NumberFormatException exception) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "No slots can be empty\n" +
                     "Name must be a letter (no numbers)\n" +
                     "Company Name must be a letter (no numbers)\n" +
